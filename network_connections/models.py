@@ -7,7 +7,7 @@ class Device(models.Model):
     # Device type (Server, Hub, Switch, Router, Modem, 
     #               Media Converters, Optical Transceivers)
     # Total ports
-    # Ports available
+    # Ports available (decrement on form submission & update)
     # Cables connected (foreign Key)
 
 
