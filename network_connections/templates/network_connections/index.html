@@ -1,11 +1,43 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Connections</title>
+
+    <link rel="stylesheet" href="{% static 'network_connections/style.css'%}">
+    <script src = "{% static 'network_connections/main.js' %}" defer></script>
 </head>
 <body>
    <h1>Hello World!</h1> 
+
+   <form action="" method="post">
+    {% csrf_token %}
+    <legend>
+        <h3>Add Connection</h3>
+    </legend>
+
+    <fieldset class="connection-fieldset">
+        
+        <label for="Device 1">Device 1: </label>
+        <input type="text" name="Device 1">
+        <label for="Port 1">Port 1: </label>
+        <input type="radio" name="Port 1">
+    </fieldset>
+    
+    <fieldset class="connection-fieldset">
+
+        <label for="Device 2">Device 2: </label>
+        <input type="text" name="Device 2">
+        <label for="Port 2">Port 2: </label>
+        <input type="radio" name="Port 2">
+        
+    </fieldset>
+
+
+   </form>
+
 </body>
 </html>
