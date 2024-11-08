@@ -4,3 +4,15 @@
 .connection-fieldset{
     width: fit-content;
 }
+
+.test{
+    height: 30px;
+}
+
+.whatever{
+    font-size: large;
+}
+
+.nothing{
+    background-color: blue;
+}

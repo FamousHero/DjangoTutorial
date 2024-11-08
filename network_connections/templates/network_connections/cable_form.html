@@ -2,13 +2,64 @@
 {% load form_filters %}
 
 {% block CableFormBlock %}
-{% for field in CableForm %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        <label for="{{field.id_for_label}}" class="whatever nothing">{{field.label}}: </label>
-        {{ field|add_class:"test whatever" }}
-    </div>
+    <form action="#" method="post"></form>
+        {% csrf_token %}
+        <legend>
+            <h3>Add Connection</h3>
+        </legend>
 
-{% endfor %}
-    <div class="nothing">Hello world</div>
+        <fieldset class="connection-fieldset">
+            <legend>Device 1</legend>
+            <div>
+                {{CableForm.device_1.errors}}
+                <label for="{{CableForm.device_1.id_for_label}}" class="">
+                    {{CableForm.device_1.label}}: 
+                </label>
+                {{CableForm.device_1|add_class:""}}
+            </div>
+            <div>
+                {{CableForm.port_1.errors}}
+                <label for="{{CableForm.port_1.id_for_label}}" class="">
+                    {{CableForm.port_1.label}}: 
+                </label>
+                {{CableForm.port_1|add_class:""}}
+            </div>
+        </fieldset>
+
+        <fieldset class="connection-fieldset">
+            <legend>Device 2</legend>
+            <div>
+                {{CableForm.device_2errors}}
+                <label for="{{CableForm.device_2.id_for_label}}" class="">
+                    {{CableForm.device_2.label}}: 
+                </label>
+                {{CableForm.device_2|add_class:""}}
+            </div>
+            <div>
+                {{CableForm.port_2.errors}}
+                <label for="{{CableForm.port_2.id_for_label}}" class="">
+                    {{CableForm.port_2.label}}: 
+                </label>
+                {{CableForm.port_2|add_class:""}}
+            </div>
+        </fieldset> 
+
+        <fieldset class="connection-fieldset">
+            <legend>Cable Info</legend>
+            <div>
+                {{CableForm.cable_type.errors}}
+                <label for="{{CableForm.cable_type.id_for_label}}" class="">
+                    {{CableForm.cable_type.label}}: 
+                </label>
+                {{CableForm.cable_type|add_class:""}}
+            </div>
+            <div>
+                {{CableForm.cable_length.errors}}
+                <label for="{{CableForm.cable_length.id_for_label}}" class="">
+                    {{CableForm.cable_length.label}}: 
+                </label>
+                {{CableForm.cable_length|add_class:""}}
+            </div>
+        </fieldset>
+
 {% endblock CableFormBlock %}
