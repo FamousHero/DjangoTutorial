@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
 from .forms import CableForm
 
 from django.db import transaction
@@ -77,3 +78,12 @@ def index(request):
     return render(request, "network_connections/cable_form.html", context)
 
 #TODO: update page, delete page, create page(devices)
+
+
+def devices(request):
+    return HttpResponse("Device Page")
+
+# Endpoint, called by js once device is selected, return json of data
+def device_details(request, mac_address):
+    return JsonResponse({"response_str":"status ok, mac_address follows",
+                        "mac_address": mac_address})
