@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import CableForm
 
 # Create your views here.
 
@@ -16,4 +17,8 @@ from django.shortcuts import render
 #
 
 def index(request):
-    return render(request, "network_connections/index.html")
+    cable_form = CableForm()
+    context = {
+        "CableForm": cable_form
+    }
+    return render(request, "network_connections/cable_form.html", context)

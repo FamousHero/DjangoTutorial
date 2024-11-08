@@ -1,0 +1,14 @@
+{% extends "network_connections/index.html" %}
+{% load form_filters %}
+
+{% block CableFormBlock %}
+{% for field in CableForm %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <label for="{{field.id_for_label}}" class="whatever nothing">{{field.label}}: </label>
+        {{ field|add_class:"test whatever" }}
+    </div>
+
+{% endfor %}
+    <div class="nothing">Hello world</div>
+{% endblock CableFormBlock %}

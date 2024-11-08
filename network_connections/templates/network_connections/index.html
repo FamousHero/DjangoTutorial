@@ -20,77 +20,85 @@
 </head>
 <body>
    <h1>Hello World!</h1> 
+    <!--
+        <form action="" method="post">
+            {% csrf_token %}
+            <legend>
+                <h3>Add Connection</h3>
+            </legend>
+            
+            <fieldset class="connection-fieldset">
+                <div>
+                    <label for="Device 1">Device 1: </label>
+                    <input type="text" name="Device 1" id="Device 1">
+                </div>
+                
+                <div>
+                    <label for="Port 1">Port 1: </label>
+                    <input type="radio" name="Port 1">
+                    <input type="radio" name="Port 1" value="2">
+                    <input type="radio" name="Port 1" value="3">
+                    <input type="radio" name="Port 1" value="4">
+                    <input type="radio" name="Port 1" value="5">
+                </div>
+                
+            </fieldset>
+            
+            <fieldset class="connection-fieldset">
+                <div>
+                    <label for="Device 2">Device 2: </label>
+                    <input type="text" name="Device 2" id="Device 2">
+                </div>
+                
+                <div>
+                    <label for="Port 2">Port 2: </label>
+                    <input type="radio" name="Port 2">
+                    <input type="radio" name="Port 2" value="2">
+                    <input type="radio" name="Port 2" value="3">
+                    <input type="radio" name="Port 2" value="4">
+                    <input type="radio" name="Port 2" value="5">
+                </div>
+                
+            </fieldset>
+            
+            <fieldset class="connection-fieldset">
+                <div>
+                    <label for="Cable Type">Cable Type: </label>
+                    <select name="Cable Type" id="Cable Type">
+                        <option value="CAT5e">CAT5e</option>
+                        <option value="CAT6">CAT6</option>
+                        <option value="CAT6a">CAT6a</option>
+                        <option value="coaxial">coaxial</option>
+                        <option value="Single-Mode Fiber Optic">Single-Mode Fiber Optic</option>
+                        <option value="Multi-Mode Fiber Optic">Multi-Mode Fiber Optic</option>
+                        <option value="OM3/OM4">OM3/OM4</option>
+                        <option value="OM5">OM5</option>
+                        <option value="MTP/MPO">MTP/MPO</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="Cable Length">Cable Length: </label>
+                    <select name="Cable Length" id="Cable Length">
+                        <option value="5">5ft.</option>
+                        <option value="8">8ft.</option>
+                        <option value="12">12ft.</option>
+                        <option value="24">24ft.</option>
+                        <option value="36">36ft.</option>
+                        <option value="48">48ft.</option>
+                    </select>
+                </fieldset>
+            </div>
+            <input type="submit" value="Submit New Connection">
+        </form>
+        -->
 
-   <form action="" method="post">
-    {% csrf_token %}
-    <legend>
-        <h3>Add Connection</h3>
-    </legend>
 
-    <fieldset class="connection-fieldset">
-        <div>
-            <label for="Device 1">Device 1: </label>
-            <input type="text" name="Device 1" id="Device 1">
-        </div>
-        
-        <div>
-            <label for="Port 1">Port 1: </label>
-            <input type="radio" name="Port 1">
-            <input type="radio" name="Port 1" value="2">
-            <input type="radio" name="Port 1" value="3">
-            <input type="radio" name="Port 1" value="4">
-            <input type="radio" name="Port 1" value="5">
-        </div>
-
-    </fieldset>
+   <div>
+    Form generated from context
+   </div>
     
-    <fieldset class="connection-fieldset">
-        <div>
-            <label for="Device 2">Device 2: </label>
-            <input type="text" name="Device 2" id="Device 2">
-        </div>
-        
-        <div>
-            <label for="Port 2">Port 2: </label>
-            <input type="radio" name="Port 2">
-            <input type="radio" name="Port 2" value="2">
-            <input type="radio" name="Port 2" value="3">
-            <input type="radio" name="Port 2" value="4">
-            <input type="radio" name="Port 2" value="5">
-        </div>
-        
-    </fieldset>
-
-    <fieldset class="connection-fieldset">
-        <div>
-            <label for="Cable Type">Cable Type: </label>
-            <select name="Cable Type" id="Cable Type">
-                <option value="CAT5e">CAT5e</option>
-                <option value="CAT6">CAT6</option>
-                <option value="CAT6a">CAT6a</option>
-                <option value="coaxial">coaxial</option>
-                <option value="Single-Mode Fiber Optic">Single-Mode Fiber Optic</option>
-                <option value="Multi-Mode Fiber Optic">Multi-Mode Fiber Optic</option>
-                <option value="OM3/OM4">OM3/OM4</option>
-                <option value="OM5">OM5</option>
-                <option value="MTP/MPO">MTP/MPO</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="Cable Length">Cable Length: </label>
-            <select name="Cable Length" id="Cable Length">
-                <option value="5">5ft.</option>
-                <option value="8">8ft.</option>
-                <option value="12">12ft.</option>
-                <option value="24">24ft.</option>
-                <option value="36">36ft.</option>
-                <option value="48">48ft.</option>
-            </select>
-        </fieldset>
-        </div>
-    <input type="submit" value="Submit New Connection">
-   </form>
+   {% block CableFormBlock %}{% endblock %}
 
 </body>
 </html>
