@@ -2,7 +2,7 @@
 {% load form_filters %}
 
 {% block CableFormBlock %}
-    <form action="#" method="post"></form>
+    <form action="#" method="post" id="connection-form">
         {% csrf_token %}
         <legend>
             <h3>Add Connection</h3>
@@ -62,4 +62,6 @@
             </div>
         </fieldset>
 
+        <input id="connection-submit-button" type="submit" value="Submit New Connection">
+    </form>
 {% endblock CableFormBlock %}

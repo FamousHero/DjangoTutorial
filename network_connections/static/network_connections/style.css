@@ -2,17 +2,16 @@
     box-sizing: border-box;
 }
 .connection-fieldset{
-    width: fit-content;
+    width: 300px;
+    margin: 10px auto;
 }
 
-.test{
-    height: 30px;
+#connection-form{
+    width: 500px;
+    margin: auto;
+    text-align: center;
 }
-
-.whatever{
-    font-size: large;
-}
-
-.nothing{
-    background-color: blue;
+#connection-submit-button{
+    width: 100px;
+    text-wrap: wrap;
 }
