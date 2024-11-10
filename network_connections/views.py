@@ -83,12 +83,15 @@ def index(request):
 #TODO: update page, delete page, create page(devices)
 
 
-def devices(request):
-    devices = Device.objects.values()
+def items(request, item_type):
+    if item_type == "devices":
+        items = Device.objects.values()
+    elif item_type == "cables":
+        items = Cable.objects.values()
     context = {
-        "devices": devices,
+        "items": items,
         }
-    return render(request, "network_connections/device_management.html", context)
+    return render(request, "network_connections/item_management.html", context)
 
 # Endpoint, called by js once device is selected, return json of data
 def device_details(request, mac_address):
@@ -102,11 +105,3 @@ def device_details(request, mac_address):
     
     except MultipleObjectsReturned:
         return JsonResponse({"response_str": "shouldn't happen mac addresses are unique"})
-
-
-def cables(request):
-    cables = Cable.objects.values()
-    context = {
-        "cables": cables,
-        }
-    return render(request, "network_connections/cable_management.html", context)
