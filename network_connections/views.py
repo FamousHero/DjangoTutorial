@@ -89,6 +89,7 @@ def items(request, item_type):
     elif item_type == "cables":
         items = Cable.objects.values()
     context = {
+        "item_type": item_type,
         "items": items,
         }
     return render(request, "network_connections/item_management.html", context)

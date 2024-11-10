@@ -1,9 +1,49 @@
 {% extends 'network_connections/base.html' %}
 
 {% block content %}
-    {% for item in items %}
-        <div>
-            {{item}}
-        </div>
-    {% endfor %}
+    <table>
+        <tr>
+        {% if item_type == "devices" %}
+            <th>Device #</th>
+            <th>Mac Address</th>
+            <th>Device Type</th>
+            <th>Total Ports</th>
+            <th>Ports Available</th>
+            <th>Details</th>
+        {% elif item_type == "cables" %}
+            <th>Cable #</th>
+            <th>Device 1 #</th>
+            <th>Port 1 #</th>
+            <th>Cable Type</th>
+            <th>Cable Length</th>
+            <th>Device 2 #</th>
+            <th>Port 2 #</th>
+            <th>Last Validated</th>
+            <th>Delete</th>
+        {% endif %}
+        </tr>
+        {% for item in items %}
+        <tr>
+            {% if item_type == "devices" %} 
+                <td>{{item.id}}</td>
+                <td>{{item.mac_address}}</td>
+                <td>{{item.device_type}}</td>
+                <td>{{item.total_ports}}</td>
+                <td>{{item.ports_available}}</td>
+                <td>Button</td>
+            </tr>
+            {% elif item_type == "cables" %} 
+                <td>{{item.id}}</td>
+                <td>{{item.device_1_id}}</td>
+                <td>{{item.port_1}}</td>
+                <td>{{item.cable_type}}</td>
+                <td>{{item.cable_length}}</td>
+                <td>{{item.device_2_id}}</td>
+                <td>{{item.port_2}}</td>
+                <td>{{item.last_validated}}</td>
+                <td>Delete</td>
+            {% endif %} 
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
