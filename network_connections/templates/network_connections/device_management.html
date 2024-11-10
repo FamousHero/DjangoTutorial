@@ -1,0 +1,9 @@
+{% extends 'network_connections/base.html' %}
+
+{% block content %}
+    {% for device in devices %}
+        <div>
+            {{device}}
+        </div>
+    {% endfor %}
+{% endblock %}

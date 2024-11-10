@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.forms.models import model_to_dict
+
 from django.http import HttpResponse, JsonResponse
-from .forms import CableForm
 
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
-from .models import Cable
+from .models import Cable, Device
+from .forms import CableForm
 # Create your views here.
 
 # Template view should have a form with 
@@ -81,9 +84,29 @@ def index(request):
 
 
 def devices(request):
-    return HttpResponse("Device Page")
+    devices = Device.objects.values()
+    context = {
+        "devices": devices,
+        }
+    return render(request, "network_connections/device_management.html", context)
 
 # Endpoint, called by js once device is selected, return json of data
 def device_details(request, mac_address):
-    return JsonResponse({"response_str":"status ok, mac_address follows",
-                        "mac_address": mac_address})
+    try:
+        device = Device.objects.get(mac_address=mac_address)
+        return JsonResponse({"response_str":"status ok, mac_address follows",
+                        "mac_address": mac_address,
+                        "details": model_to_dict(device)})
+    except ObjectDoesNotExist:
+        return JsonResponse({ "response_str": "error object not found"})
+    
+    except MultipleObjectsReturned:
+        return JsonResponse({"response_str": "shouldn't happen mac addresses are unique"})
+
+
+def cables(request):
+    cables = Cable.objects.values()
+    context = {
+        "cables": cables,
+        }
+    return render(request, "network_connections/cable_management.html", context)

@@ -1,6 +1,9 @@
 *, *::after, *::before{
     box-sizing: border-box;
 }
+body{
+    padding: 20px;
+}
 .connection-fieldset{
     width: 300px;
     margin: 10px auto;
