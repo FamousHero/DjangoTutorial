@@ -9,7 +9,8 @@ $(document).ready(function(){
         if(table.attr('aria-label') == 'Device Info'){
             buttons.each(function(){
                 const button = $(this);
-                const mac_address = button.parent().parent().children().eq(1).text();
+                const table_row = button.parent().parent();
+                const mac_address = table_row.children().eq(1).text();
                 
                 button.click(async ()=>{
                     try{
@@ -34,7 +35,8 @@ $(document).ready(function(){
         else if(table.attr('aria-label') == 'Cable Info'){
             buttons.each(function(){
                 const button = $(this);
-                const pk = button.parent().parent().children().eq(0).text();
+                const table_row = button.parent().parent();
+                const pk = table_row.children().eq(0).text();
                 
                 button.click(async ()=>{
                     try{
@@ -48,6 +50,7 @@ $(document).ready(function(){
                         if(!response.ok){
                             throw new Error('not ok');
                         }
+                        table_row.remove();
                         const json = await response.json();
                         console.log(json);
                     } catch(error){

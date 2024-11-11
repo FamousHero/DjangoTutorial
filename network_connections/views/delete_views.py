@@ -5,6 +5,7 @@ from ..models import Cable, Device
 
 def delete_cable(request, pk):
     print(f"delete cable pk: {pk}")
+    Cable.objects.get(pk=pk).delete()
     return JsonResponse({'status_code': 200, 'pk': pk})
 
 def delete_device(request, mac_address):
