@@ -1,9 +1,61 @@
 console.log("Hello world!");
 
-let cableElems;
-
 $(document).ready(function(){
-    cableElems = $('a');
-    console.log(cableElems)
+    const buttons = $('button');
+    const table = $('table');
+    const csrf_token = $("input[name='csrfmiddlewaretoken']").val()
+    
+    if(table){
+        if(table.attr('aria-label') == 'Device Info'){
+            buttons.each(function(){
+                const button = $(this);
+                const mac_address = button.parent().parent().children().eq(1).text();
+                
+                button.click(async ()=>{
+                    try{
+                        const relative_url = mac_address+'/delete';
+                        const response = await fetch(relative_url,{
+                            method: "PUT",
+                            headers: {
+                                'X-CSRFToken': csrf_token
+                            },
+                        })
+                        if(!response.ok){
+                            throw new Error('not ok');
+                        }
+                        const json = await response.json();
+                        console.log(json);
+                    } catch(error){
+                        console.error(error.message);
+                    }
+                })
+            })
+        }
+        else if(table.attr('aria-label') == 'Cable Info'){
+            buttons.each(function(){
+                const button = $(this);
+                const pk = button.parent().parent().children().eq(0).text();
+                
+                button.click(async ()=>{
+                    try{
+                        const relative_url = pk+'/delete';
+                        const response = await fetch(relative_url,{
+                            method: "PUT",
+                            headers: {
+                                'X-CSRFToken': csrf_token
+                            },
+                        })
+                        if(!response.ok){
+                            throw new Error('not ok');
+                        }
+                        const json = await response.json();
+                        console.log(json);
+                    } catch(error){
+                        console.error(error.message);
+                    }
+                })
+            })
+        }
+    }
 }
 )

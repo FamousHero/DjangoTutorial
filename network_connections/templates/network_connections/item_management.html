@@ -1,16 +1,24 @@
 {% extends 'network_connections/base.html' %}
 
 {% block content %}
-    <table>
-        <tr>
+{% csrf_token %}
+    {% if item_type == "devices" %}
+    <table aria-label="Device Info">
+    {% elif item_type == "cables" %}
+    <table aria-label="Cable Info">
+    {% endif %}
+
         {% if item_type == "devices" %}
+        <tr>
             <th>Device #</th>
             <th>Mac Address</th>
             <th>Device Type</th>
             <th>Total Ports</th>
             <th>Ports Available</th>
             <th>Details</th>
+        </tr>  
         {% elif item_type == "cables" %}
+        <tr>
             <th>Cable #</th>
             <th>Device 1 #</th>
             <th>Port 1 #</th>
@@ -20,8 +28,9 @@
             <th>Port 2 #</th>
             <th>Last Validated</th>
             <th>Delete</th>
-        {% endif %}
         </tr>
+        {% endif %}
+
         {% for item in items %}
         <tr>
             {% if item_type == "devices" %} 
