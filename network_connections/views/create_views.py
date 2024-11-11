@@ -1,27 +1,9 @@
 from django.shortcuts import render
-from django.forms.models import model_to_dict
-
-from django.http import HttpResponse, JsonResponse
 
 from django.db import transaction
-from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
-from .models import Cable, Device
-from .forms import CableForm
-# Create your views here.
-
-# Template view should have a form with 
-#   Server 1
-#   Port 1
-#   Server 2
-#   Port 2
-#  
-#   Cable type (Copper: CAT5e, CAT6, CAT6a, coaxial, 
-#               Fiber Optic: Single-Mode, Mult-Mode Fiber, OM3/OM4, OM5, MTP/MPO )
-#       Ref: https://www.networkcablingservices.com/a-comprehensive-guide-to-data-center-cabling/
-
-# Cable Length
-#
+from ..models import Cable 
+from ..forms import CableForm
 
 def index(request):
     #TODO: accept post request, validate form, create db entry (transaction based)
@@ -79,30 +61,3 @@ def index(request):
         "CableForm": cable_form
     }
     return render(request, "network_connections/cable_form.html", context)
-
-#TODO: update page, delete page, create page(devices)
-
-
-def items(request, item_type):
-    if item_type == "devices":
-        items = Device.objects.values()
-    elif item_type == "cables":
-        items = Cable.objects.values()
-    context = {
-        "item_type": item_type,
-        "items": items,
-        }
-    return render(request, "network_connections/item_management.html", context)
-
-# Endpoint, called by js once device is selected, return json of data
-def device_details(request, mac_address):
-    try:
-        device = Device.objects.get(mac_address=mac_address)
-        return JsonResponse({"response_str":"status ok, mac_address follows",
-                        "mac_address": mac_address,
-                        "details": model_to_dict(device)})
-    except ObjectDoesNotExist:
-        return JsonResponse({ "response_str": "error object not found"})
-    
-    except MultipleObjectsReturned:
-        return JsonResponse({"response_str": "shouldn't happen mac addresses are unique"})

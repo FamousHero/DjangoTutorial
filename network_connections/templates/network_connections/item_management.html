@@ -30,7 +30,7 @@
                 <td>{{item.device_type}}</td>
                 <td>{{item.total_ports}}</td>
                 <td>{{item.ports_available}}</td>
-                <td>Button</td>
+                <td><button type="button">Button</button></td>
             </tr>
             {% elif item_type == "cables" %} 
                 <td>{{item.id}}</td>
@@ -41,7 +41,7 @@
                 <td>{{item.device_2_id}}</td>
                 <td>{{item.port_2}}</td>
                 <td>{{item.last_validated}}</td>
-                <td>Delete</td>
+                <td><button type="button">Delete</button></td>
             {% endif %} 
         </tr>
         {% endfor %}
