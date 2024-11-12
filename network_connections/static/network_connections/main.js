@@ -24,8 +24,6 @@ $(document).ready(function(){
                         if(!response.ok){
                             throw new Error('not ok');
                         }
-                        const json = await response.json();
-                        console.log(json);
                     } catch(error){
                         console.error(error.message);
                     }
@@ -51,8 +49,6 @@ $(document).ready(function(){
                             throw new Error('not ok');
                         }
                         table_row.remove();
-                        const json = await response.json();
-                        console.log(json);
                     } catch(error){
                         console.error(error.message);
                     }

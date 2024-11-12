@@ -19,6 +19,10 @@ def index(request):
                 device_1_port_bitmap = device_1.port_bitmap
                 port_1 = 1 << (cable_form["port_1"] - 1)
 
+                # Convert to its signed counterpart
+                if cable_form["port_1"] == 64:
+                    port_1 = -port_1
+
                 if port_1 & device_1_port_bitmap == 0:
                     device_1_port_bitmap |= port_1
                 
@@ -30,6 +34,10 @@ def index(request):
                 device_2 = cable_form["device_2"]
                 device_2_port_bitmap = device_2.port_bitmap
                 port_2 = 1 << (cable_form["port_2"] - 1)
+                
+                # Convert to its signed counterpart
+                if cable_form["port_2"] == 64:
+                    port_2 =  -port_2 
 
                 if port_2 & device_2_port_bitmap == 0:
                     device_2_port_bitmap |= port_2
