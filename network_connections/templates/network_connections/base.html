@@ -1,25 +1,30 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta name="author" content="Indus">
-    <meta name="description" content="Landing page to log new connection
-        between two devices">
 
 
-    <meta charset="UTF-8">
+    <meta name="description" 
+        content={% block metaDescription %}
+            "Landing page to log new connection
+        between two devices"{% endblock %}>
+
+        <title>{% block pageTitle %}Network Connections{% endblock %}</title>    
+    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Connections</title>
-
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'network_connections/style.css'%}">
     <link rel="icon" href="{% static 'network_connections/icons/form.ico'%}">
 
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
     <script src = "{% static 'network_connections/main.js' %}" defer></script>
+    {% block metaExtensions %}{% endblock %}
 </head>
 <body>
-   <h1>Hello World!</h1> 
     <!--
         <form action="" method="post">
             {% csrf_token %}
@@ -93,12 +98,9 @@
         </form>
         -->
 
-
-   <div>
-    Form generated from context
-   </div>
-    
-   {% block CableFormBlock %}{% endblock %}
+    <main>
+        {% block content%}{% endblock %}
+    </main>
 
 </body>
 </html>

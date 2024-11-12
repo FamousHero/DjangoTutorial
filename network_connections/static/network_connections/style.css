@@ -1,6 +1,22 @@
 *, *::after, *::before{
     box-sizing: border-box;
 }
+body{
+    padding: 20px;
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+td,th{
+    border: 2px solid black;
+    padding: 4px 8px;
+}
+th{
+    background-color: lightgray;
+}
 .connection-fieldset{
     width: 300px;
     margin: 10px auto;

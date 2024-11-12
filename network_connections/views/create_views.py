@@ -1,23 +1,9 @@
 from django.shortcuts import render
-from .forms import CableForm
 
 from django.db import transaction
 
-from .models import Cable
-# Create your views here.
-
-# Template view should have a form with 
-#   Server 1
-#   Port 1
-#   Server 2
-#   Port 2
-#  
-#   Cable type (Copper: CAT5e, CAT6, CAT6a, coaxial, 
-#               Fiber Optic: Single-Mode, Mult-Mode Fiber, OM3/OM4, OM5, MTP/MPO )
-#       Ref: https://www.networkcablingservices.com/a-comprehensive-guide-to-data-center-cabling/
-
-# Cable Length
-#
+from ..models import Cable 
+from ..forms import CableForm
 
 def index(request):
     #TODO: accept post request, validate form, create db entry (transaction based)
@@ -33,6 +19,10 @@ def index(request):
                 device_1_port_bitmap = device_1.port_bitmap
                 port_1 = 1 << (cable_form["port_1"] - 1)
 
+                # Convert to its signed counterpart
+                if cable_form["port_1"] == 64:
+                    port_1 = -port_1
+
                 if port_1 & device_1_port_bitmap == 0:
                     device_1_port_bitmap |= port_1
                 
@@ -44,6 +34,10 @@ def index(request):
                 device_2 = cable_form["device_2"]
                 device_2_port_bitmap = device_2.port_bitmap
                 port_2 = 1 << (cable_form["port_2"] - 1)
+                
+                # Convert to its signed counterpart
+                if cable_form["port_2"] == 64:
+                    port_2 =  -port_2 
 
                 if port_2 & device_2_port_bitmap == 0:
                     device_2_port_bitmap |= port_2
@@ -75,5 +69,3 @@ def index(request):
         "CableForm": cable_form
     }
     return render(request, "network_connections/cable_form.html", context)
-
-#TODO: update page, delete page, create page(devices)

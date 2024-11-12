@@ -1,0 +1,60 @@
+{% extends 'network_connections/base.html' %}
+
+{% block content %}
+{% csrf_token %}
+    {% if item_type == "devices" %}
+    <table aria-label="Device Info">
+    {% elif item_type == "cables" %}
+    <table aria-label="Cable Info">
+    {% endif %}
+
+        {% if item_type == "devices" %}
+        <tr>
+            <th>Device #</th>
+            <th>Mac Address</th>
+            <th>Device Type</th>
+            <th>Total Ports</th>
+            <th>Ports Available</th>
+            <th>Delete</th> <!--Change to 'Details'
+                            and create detail page-->
+        </tr>  
+        {% elif item_type == "cables" %}
+        <tr>
+            <th>Cable #</th>
+            <th>Device 1 MAC</th>
+            <th>Port 1 #</th>
+            <th>Cable Type</th>
+            <th>Cable Length</th>
+            <th>Device 2 MAC</th>
+            <th>Port 2 #</th>
+            <th>Last Validated</th>
+            <th>Delete</th>
+        </tr>
+        {% endif %}
+
+        {% for item in items %}
+        <tr>
+            {% if item_type == "devices" %} 
+                <td>{{item.id}}</td>
+                <td>{{item.mac_address}}</td>
+                <td>{{item.device_type}}</td>
+                <td>{{item.total_ports}}</td>
+                <td>{{item.ports_available}}</td>
+                <!-- Change to <a> tag linking to details-->
+                <td><button type="button">Button</button></td>
+            </tr>
+            {% elif item_type == "cables" %} 
+                <td>{{item.id}}</td>
+                <td>{{item.device_1_mac}}</td>
+                <td>{{item.port_1}}</td>
+                <td>{{item.cable_type}}</td>
+                <td>{{item.cable_length}} ft.</td>
+                <td>{{item.device_2_mac}}</td>
+                <td>{{item.port_2}}</td>
+                <td>{{item.last_validated}}</td>
+                <td><button type="button">Delete</button></td>
+            {% endif %} 
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
