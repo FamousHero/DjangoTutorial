@@ -1,13 +1,33 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 from ..models import Cable, Device
 
 def delete_cable(request, pk):
-    print(f"delete cable pk: {pk}")
-    Cable.objects.get(pk=pk).delete()
-    return JsonResponse({'status_code': 200, 'pk': pk})
+    if request.method == "DELETE":
+        Cable.objects.get(pk=pk).delete()
+        return HttpResponse(status_code=204)
+    else:
+        headers = {
+            'Allow': ["Delete"]
+        }
+        
+        return HttpResponse(
+            status_code=405,
+            content="Method Not Allowed",
+            headers=headers
+        )
 
 def delete_device(request, mac_address):
-    print(f"delete device mac: {mac_address}")
-    return JsonResponse({'status_code': 200, 'mac_address': mac_address})
+    if request.method == "DELETE":
+        Device.objects.get(mac_address=mac_address).delete()
+        return HttpResponse(status_code=204)
+    else:
+        headers = {
+            'Allow': ["Delete"]
+        }
+        
+        return HttpResponse(
+            status_code=405,
+            content="Method Not Allowed",
+            headers=headers
+        )

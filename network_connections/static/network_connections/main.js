@@ -16,7 +16,7 @@ $(document).ready(function(){
                     try{
                         const relative_url = mac_address+'/delete';
                         const response = await fetch(relative_url,{
-                            method: "PUT",
+                            method: "DELETE",
                             headers: {
                                 'X-CSRFToken': csrf_token
                             },
@@ -42,7 +42,7 @@ $(document).ready(function(){
                     try{
                         const relative_url = pk+'/delete';
                         const response = await fetch(relative_url,{
-                            method: "PUT",
+                            method: "DELETE",
                             headers: {
                                 'X-CSRFToken': csrf_token
                             },
