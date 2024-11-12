@@ -11,7 +11,19 @@ def items(request, item_type):
     if item_type == "devices":
         items = Device.objects.values()
     elif item_type == "cables":
-        items = Cable.objects.values()
+        items = []
+        cables = Cable.objects.all() # Required to pass mac_address vs. default pk
+        for cable in cables:         # Allows for easier endpoint access to device_details
+            items.append({
+                "id": cable.id,
+                "device_1_mac": cable.device_1.mac_address,
+                "port_1": cable.port_1,
+                "cable_type": cable.cable_type,
+                "cable_length": cable.cable_length,
+                "device_2_mac": cable.device_2.mac_address,
+                "port_2": cable.port_2,
+                "last_validated": cable.last_validated
+            })
     context = {
         "item_type": item_type,
         "items": items,

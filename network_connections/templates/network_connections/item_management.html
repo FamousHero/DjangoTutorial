@@ -20,11 +20,11 @@
         {% elif item_type == "cables" %}
         <tr>
             <th>Cable #</th>
-            <th>Device 1 #</th>
+            <th>Device 1 MAC</th>
             <th>Port 1 #</th>
             <th>Cable Type</th>
             <th>Cable Length</th>
-            <th>Device 2 #</th>
+            <th>Device 2 MAC</th>
             <th>Port 2 #</th>
             <th>Last Validated</th>
             <th>Delete</th>
@@ -43,11 +43,11 @@
             </tr>
             {% elif item_type == "cables" %} 
                 <td>{{item.id}}</td>
-                <td>{{item.device_1_id}}</td>
+                <td>{{item.device_1_mac}}</td>
                 <td>{{item.port_1}}</td>
                 <td>{{item.cable_type}}</td>
-                <td>{{item.cable_length}}</td>
-                <td>{{item.device_2_id}}</td>
+                <td>{{item.cable_length}} ft.</td>
+                <td>{{item.device_2_mac}}</td>
                 <td>{{item.port_2}}</td>
                 <td>{{item.last_validated}}</td>
                 <td><button type="button">Delete</button></td>
