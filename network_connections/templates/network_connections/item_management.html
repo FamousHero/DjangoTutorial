@@ -15,7 +15,8 @@
             <th>Device Type</th>
             <th>Total Ports</th>
             <th>Ports Available</th>
-            <th>Details</th>
+            <th>Delete</th> <!--Change to 'Details'
+                            and create detail page-->
         </tr>  
         {% elif item_type == "cables" %}
         <tr>
@@ -39,6 +40,7 @@
                 <td>{{item.device_type}}</td>
                 <td>{{item.total_ports}}</td>
                 <td>{{item.ports_available}}</td>
+                <!-- Change to <a> tag linking to details-->
                 <td><button type="button">Button</button></td>
             </tr>
             {% elif item_type == "cables" %} 
