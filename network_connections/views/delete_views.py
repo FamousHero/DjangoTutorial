@@ -9,7 +9,10 @@ def delete_cable(request, pk):
         # must update all connected devices to ports_availiable +1
         # and update port_bitmap (separate function)
         with transaction.atomic():
-            cable = Cable.objects.get(pk=pk).delete()
+            cable = Cable.objects.get(pk=pk)
+            _update_connections(cable.device_1, cable.port_1)
+            _update_connections(cable.device_2, cable.port_2)
+            cable.delete()
         return HttpResponse(status=204)
     else:
         headers = {
@@ -31,7 +34,6 @@ def delete_device(request, mac_address):
             connections = Cable.objects.filter(
                 Q(device_1=device) | Q(device_2=device)
                 )
-            print(connections)
             for connection in connections:
                 if device == connection.device_1:
                     print("Ok")
